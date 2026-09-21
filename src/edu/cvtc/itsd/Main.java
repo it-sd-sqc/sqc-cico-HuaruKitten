@@ -41,11 +41,14 @@ public class Main {
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      // added check for digits only in string
+      if (fb.getDocument() != null && stringToAdd.matches("\\d+")) {
         super.insertString(fb, offset, stringToAdd, attr);
       }
       else {
         Toolkit.getDefaultToolkit().beep();
+        // added error popup panel utilizing swing class call
+        JOptionPane.showMessageDialog(null, "Invalid input!\nEnter a digit." , "Input Error", JOptionPane.ERROR_MESSAGE);
       }
     }
 
@@ -53,11 +56,15 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+
+      // added check for digits and allow deleting of text
+      if (fb.getDocument() != null && (stringToAdd.isEmpty() || stringToAdd.matches("\\d+"))) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
       }
       else {
         Toolkit.getDefaultToolkit().beep();
+        // added error popup panel utilizing swing class call
+        JOptionPane.showMessageDialog(null, "Invalid input!\nEnter a digit." , "Input Error", JOptionPane.ERROR_MESSAGE);
       }
     }
   }

@@ -1,0 +1,12 @@
+Testing the happy path
+00000000
+99999999
+
+Antagonistic test: lower boundaries
+abcd
+1000
+0
+-1000
+22.89
+
+

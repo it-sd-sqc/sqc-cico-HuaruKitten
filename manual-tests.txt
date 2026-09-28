@@ -70,4 +70,3 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected results
 * Should inform the user they need to enter numerical values after step 2.
-

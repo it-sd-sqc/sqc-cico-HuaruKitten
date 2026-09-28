@@ -77,9 +77,15 @@ public class Main {
   }
 
   // Revert to the main panel after time has passed ///////////////////////////
+  // utilize the Timeout function to check status
+  // use Swing with making changes
   public static class Timeout extends TimerTask {
     public void run() {
-      Main.doneProcessing();
+       SwingUtilities.invokeLater(new Runnable() {
+         public void run() {
+           Main.doneProcessing();
+         }
+       });
     }
   }
 
@@ -200,9 +206,12 @@ public class Main {
   }
 
   // Return to the main panel /////////////////////////////////////////////////
+  // added other safety checks for timeout added to module5
   private static void doneProcessing() {
-    timeout.cancel();
-    timeout = null;
+    if (timer != null) {
+      timeout.cancel();
+      timeout = null;
+    }
     fieldNumber.setText("");
     ((CardLayout)deck.getLayout()).show(deck, CARD_MAIN);
     fieldNumber.grabFocus();
@@ -289,7 +298,16 @@ public class Main {
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
 
+    // add close button to status panel for module5
+    JButton closeStatusButton = new JButton("Close");
+    closeStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    closeStatusButton.addActionListener(new Handler());
+    panelStatus.add(closeStatusButton);
+
     panelStatus.add(Box.createVerticalGlue());
+
+
+
 
     // Error panel ////////////////////////////////////////////////////////////
     JPanel panelError = new JPanel();

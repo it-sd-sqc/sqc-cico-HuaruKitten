@@ -70,3 +70,14 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected results
 * Should inform the user they need to enter numerical values after step 2.
+
+
+# Module 5: Offer a close button after login/logout
+
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field and click Update.
+3. Click Close
+
+## Expected results
+* Should return to scan panel after step 3.

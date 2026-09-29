@@ -208,8 +208,10 @@ public class Main {
 
   // Return to the main panel /////////////////////////////////////////////////
   private static void doneProcessing() {
-    timeout.cancel();
-    timeout = null;
+    if (timeout != null) {
+      timeout.cancel();
+      timeout = null;
+    }
     fieldNumber.setText("");
     ((CardLayout)deck.getLayout()).show(deck, CARD_MAIN);
     fieldNumber.grabFocus();
@@ -295,6 +297,12 @@ public class Main {
     labelState.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
+
+    // add close button to status panel for module5
+    JButton closeStatusButton = new JButton("Close");
+    closeStatusButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    closeStatusButton.addActionListener(new Handler());
+    panelStatus.add(closeStatusButton);
 
     panelStatus.add(Box.createVerticalGlue());
 
